@@ -16,7 +16,7 @@ chmod -R 700 $HOME_DIR/.ssh
 
 # ENABLING SUDO FOR THE NODESTER USER
 echo "# nodester related rules
-nodester ALL = NOPASSWD: /var/nodester/nodester/proxy/start_proxy.sh *
-nodester ALL = NOPASSWD: /var/nodester/nodester/proxy/stop.sh
-nodester ALL = NOPASSWD: /var/nodester/nodester/scripts/launch_app.sh *
+$NODESTER_USER ALL = NOPASSWD: $NODESTER_HOME_DIR/nodester/proxy/start_proxy.sh *
+$NODESTER_USER ALL = NOPASSWD: $NODESTER_HOME_DIR/nodester/proxy/stop.sh
+$NODESTER_USER ALL = NOPASSWD: $NODESTER_HOME_DIR/nodester/scripts/launch_app.sh *
 " >> /etc/sudoers

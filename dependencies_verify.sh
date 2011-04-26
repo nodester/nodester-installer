@@ -7,6 +7,7 @@ sys_dependencies=("node" "npm" "curl")
 # define your npm dependencies here
 declare -a npm_modules_dependencies 
 npm_modules_dependencies=("pool" "express" "request" "npm-wrapper" "daemon" "forever" "cradle")
+
 # color used for printing
 use_color=true
 if ($use_color) ;
@@ -44,7 +45,7 @@ do
 			DEP_KO="I need $sys_dep and but it is missing." ; 
 			printf '%s%*s%s' "$DEP_KO" $COL_KO "[${BLDRED}${KO_MSG}${NOCOLR}]" >&2; 
 			echo ;
-			new_len=$(( ${#deps_not_ok[@]} + 1 ))
+			new_len=$(( ${#sys_deps_not_ok[@]} + 1 ))
 			sys_deps_not_ok[$new_len]=$sys_dep
 		} 
 done
@@ -74,7 +75,7 @@ do
 		DEP_KO="I need $npm_mod and but it is missing." ; 
 		printf '%s%*s%s' "$DEP_KO" $COL_KO "[${BLDRED}${KO_MSG}${NOCOLR}]" >&2; 
 		echo ;
-		new_len=$(( ${#deps_not_ok[@]} + 1 ))
+		new_len=$(( ${#npm_deps_not_ok[@]} + 1 ))
 		npm_deps_not_ok[$new_len]=$npm_mod
 	}
 done
