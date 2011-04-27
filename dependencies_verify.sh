@@ -54,9 +54,16 @@ declare -a npm_deps_not_ok
 npm_deps_not_ok=()
 for npm_mod in ${npm_modules_dependencies[@]} 
 do
-	installed=$(npm -dg ls 2>&1 | grep -E '[├│└]' | grep " $npm_mod\\@" | wc -l)
-	[ $installed -gt 0 ] \
-	&& {
+	npm_version=`npm --version 2>&1`
+	if [ $( echo $npm_version | grep -E '^0\.[1-3]\..*$' ) ] ; then
+		installed=$(npm ls installed 2>&1 | grep -E "^$npm_mod\\@.*installed.*$" | wc -l)
+	elif [ $( echo $npm_version | grep -E '1\.[0-1]\..*' ) ] ; then
+		installed=$(npm -dg ls 2>&1 | grep -E '[├│└]' | grep " $npm_mod\\@" | wc -l)
+	else
+		installed="0"
+	fi
+	if [ "${installed}" -gt "0" ] ;
+	then 
 		DEP_OK="I need $npm_mod and it is correctly installed." ; 
 		OK_MSG="OK - :)"; 
 		TRM_COL=$(tput cols) ; DEP_COL_OK=${#DEP_OK} ; OK_MSG_COL=${#OK_MSG} ; 
@@ -65,8 +72,7 @@ do
 		DEP_OK="I need $npm_mod and it is correctly installed." ; 
 		printf '%s%*s%s' "$DEP_OK" $COL_OK "[${BLDGRN}${OK_MSG}${NOCOLR}]" >&2; 
 		echo ;
-	} \
-	|| {
+	else
 		DEP_KO="I need $npm_mod and but it is missing." ; 
 		KO_MSG="KO - :("; 
 		TRM_COL=$(tput cols) ; DEP_COL_KO=${#DEP_KO} ; KO_MSG_COL=${#KO_MSG} ; 
@@ -77,7 +83,7 @@ do
 		echo ;
 		new_len=$(( ${#npm_deps_not_ok[@]} + 1 ))
 		npm_deps_not_ok[$new_len]=$npm_mod
-	}
+	fi
 done
 # printing missing dependencies
 if [ "${#sys_deps_not_ok[@]}" -gt "0" ] ;
@@ -97,4 +103,8 @@ then
 		echo -n "$i "
 	done
 	echo 
+fi
+if [ "${#sys_deps_not_ok[@]}" -gt "0" ] || [ "${#npm_deps_not_ok[@]}" -gt "0" ] ;
+then
+	exit 1
 fi

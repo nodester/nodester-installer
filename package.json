@@ -1,0 +1,25 @@
+{
+  "name": "nodester",
+  "version": "0.1",
+  "description": "Open Source Node.js Hosting Platform",
+  "keywords": ["installer", "nodester", "web","hosting","nodejs","js","node"],
+	"homepage": "http://www.nodester.com",
+  "author": { "name": "ChrisMatthieu", url:"twitter.com/chrismatthieu" },
+  "contributors": [ 
+		{ "name": "ChrisMatthieu", url:"twitter.com/chrismatthieu" },
+		{ "name": "DavGlass", url:"twitter.com/davglass" },
+		{ "name": "DanBUK", url:"twitter.com/danbuk" },
+		{ "name": "Marcosvm" url:"twitter.com/marcosvm" },
+    { "name": "eldios", url:"twitter.com/eldios", "email": "lele@amicofigo.com" } 
+  ],
+  "dependencies": {
+    "connect": ">= 1.4.0 < 2.0.0"
+  },
+  "repository": "http://github.com/nodester/nodester",
+	"scripts": {
+	{ 
+		"preinstall": "scripts/dependencies_verify.sh",
+		"preinstall": "scripts/dependencies_verify.sh",
+		"install": "scripts/env_creation.sh
+	}
+}
