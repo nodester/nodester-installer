@@ -1,6 +1,14 @@
 #!/bin/bash
 # simple script to verify if youw system already has the needed binary for express
 
+echo "                 _           _"
+echo "                | |         | |"
+echo " _ __   ___   __| | ___  ___| |_ ___ _ __"
+echo "| '_ \ / _ \ / _' |/ _ \/ __| __/ _ \ '__|"
+echo "| | | | (_) | (_| |  __/\__ \ ||  __/ |"
+echo "|_| |_|\___/ \__,_|\___||___/\__\___|_|"
+echo ""
+
 # define your system dependencies here
 declare -a sys_dependencies 
 sys_dependencies=("node" "npm" "curl")
