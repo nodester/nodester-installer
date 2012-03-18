@@ -1,5 +1,5 @@
 #!/bin/bash
-# simple script to verify if youw system already has the needed binary for express
+# simple script to verify if your system already has the needed binary for express
 
 echo "                 _           _"
 echo "                | |         | |"
@@ -45,12 +45,12 @@ do
 			echo ;
 		} \
 		|| { 
-			DEP_KO="I need $sys_dep and but it is missing." ; 
+			DEP_KO="I need $sys_dep but it is missing." ; 
 			KO_MSG="KO - :("; 
 			TRM_COL=$(tput cols) ; DEP_COL_KO=${#DEP_KO} ; KO_MSG_COL=${#KO_MSG} ; 
 			COL_KO=$(( $TRM_COL - $DEP_COL_KO - $KO_MSG_COL )) ; 
 			sys_dep="${BLDCYA}${sys_dep}${NOCOLR}"
-			DEP_KO="I need $sys_dep and but it is missing." ; 
+			DEP_KO="I need $sys_dep but it is missing." ; 
 			printf '%s%*s%s' "$DEP_KO" $COL_KO "[${BLDRED}${KO_MSG}${NOCOLR}]" >&2; 
 			echo ;
 			new_len=$(( ${#sys_deps_not_ok[@]} + 1 ))
@@ -59,6 +59,8 @@ do
 done
 # checking npm dependencies
 declare -a npm_deps_not_ok
+declare -a npm_deps_to_install
+npm_deps_to_install=()
 npm_deps_not_ok=()
 for npm_mod in ${npm_modules_dependencies[@]} 
 do
@@ -81,16 +83,20 @@ do
 		printf '%s%*s%s' "$DEP_OK" $COL_OK "[${BLDGRN}${OK_MSG}${NOCOLR}]" >&2; 
 		echo ;
 	else
-		DEP_KO="I need $npm_mod and but it is missing." ; 
+		DEP_KO="I need $npm_mod but it is missing." ; 
 		KO_MSG="KO - :("; 
 		TRM_COL=$(tput cols) ; DEP_COL_KO=${#DEP_KO} ; KO_MSG_COL=${#KO_MSG} ; 
-		COL_KO=$(( $TRM_COL - $DEP_COL_KO - $KO_MSG_COL )) ; 
+		COL_KO=$(( $TRM_COL - $DEP_COL_KO - $KO_MSG_COL )) ;
+    npm_mod_to_install="${npm_mod}"
 		npm_mod="${BLDVIO}${npm_mod}${NOCOLR}"
-		DEP_KO="I need $npm_mod and but it is missing." ; 
+		DEP_KO="I need $npm_mod but it is missing." ; 
 		printf '%s%*s%s' "$DEP_KO" $COL_KO "[${BLDRED}${KO_MSG}${NOCOLR}]" >&2; 
 		echo ;
 		new_len=$(( ${#npm_deps_not_ok[@]} + 1 ))
 		npm_deps_not_ok[$new_len]=$npm_mod
+    new_install=$(( ${#npm_deps_to_install[@]} + 1 ))
+    npm_deps_to_install[$new_install]=$npm_mod_to_install
+
 	fi
 done
 # printing missing dependencies
@@ -105,13 +111,42 @@ then
 fi 
 if [ "${#npm_deps_not_ok[@]}" -gt "0" ] ;
 then 
-	echo -n "NPM Components ${BLDYEL}not found${NOCOLR}: "
+	echo -n "NPM modules ${BLDYEL}not found${NOCOLR}: "
 	for i in "${npm_deps_not_ok[@]}"
 	do 
 		echo -n "$i "
 	done
-	echo 
+	echo ;
+  echo ;
+  echo -n "I can install these missing NPM modules for you."
+  echo ;
+  echo -n "Typing ${BLDYEL}yes${NOCOLR} will run ${BLDYEL}npm install${NOCOLR} ${BLDVIO}[missing module]${NOCOLR} ${BLDYEL}-g${NOCOLR}"
+  echo ;
+  echo -n "Would you like to install these dependencies globally? [type ${BLDYEL}yes${NOCOLR} to proceed]: "
+  read install_npm_modules
+  if [ "$install_npm_modules" == 'yes' ] ;
+  then 
+	  for i in "${npm_deps_to_install[@]}"
+	  do
+      echo -n "installing npm module ${BLDVIO}$i${NOCOLR}"
+      echo ;
+      sh -c "npm install $i -g"
+      echo ;
+    done
+    echo ;
+  else
+    echo ;
+    echo -n "The following NPM modules will need to be installed manually before nodester can be installed" ;
+    echo ;
+    for i in "${npm_deps_not_ok[@]}"
+    do 
+      echo -n "$i "
+    done
+    echo 
+
+  fi
 fi
+
 if [ "${#sys_deps_not_ok[@]}" -gt "0" ] || [ "${#npm_deps_not_ok[@]}" -gt "0" ] ;
 then
 	exit 1
