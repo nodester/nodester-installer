@@ -10,8 +10,9 @@ Note: These scripts are still under development
     We're not responsible for whatever injuries/damage you could get from/by this script. Included but not limited to fried cats, zombie relatives or your fiacee suddenly turning nerdy.
   
 ## Steps
-	Verify your environment dependencies by running "./dependencies_verify.sh"
-	Install all missing NPM modules using "npm install -g"
+	Verify your environment and/or install dependencies by running "./dependencies_verify.sh"
+	Install all missing NPM modules using "npm install -g" if electing not
+to auto-install with dependencies_verify.sh
 	Run "sudo su"
 	Run "./env_creation.sh"
 	
