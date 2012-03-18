@@ -55,6 +55,9 @@ case $whoami in
 			;;
 		esac
 
+    # TODO add git as sys dependency check in dependencies_verify.sh
+    sh -c "git clone https://github.com/nodester/nodester.git $NODESTER_HOME_DIR/nodester"
+
 		sh -c " mkdir -p $NODESTER_HOME_DIR/.ssh &&
 					echo $YOUR_PUB_KEY > $NODESTER_HOME_DIR/.ssh/authorized_keys &&
 					chmod -R 700 $NODESTER_HOME_DIR/.ssh &&
