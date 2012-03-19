@@ -11,7 +11,8 @@ echo ""
 
 # define your system dependencies here
 declare -a sys_dependencies 
-sys_dependencies=("node" "npm" "curl")
+sys_dependencies=("node" "npm" "curl" "git")
+
 # define your npm dependencies here
 declare -a npm_modules_dependencies 
 npm_modules_dependencies=("pool" "express" "request" "npm-wrapper" "daemon" "cradle" "connect" "coffee-script" "colors" "nodemailer" "bouncy" "nodeinfo")
