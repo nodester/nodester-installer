@@ -7,7 +7,7 @@ Note: These scripts are still under development
 
 ## Disclaimer
     **WARNING**
-    We're not responsible for whatever injuries/damage you could get from/by this script. Included but not limited to fried cats, zombie relatives or your fiacee suddenly turning nerdy.
+    We're not responsible for whatever injuries/damage you could get from/by this script. Included but not limited to fried cats, zombie relatives or your fiancee suddenly turning nerdy.
   
 ## Steps
 	Verify your environment and/or install dependencies by running "./dependencies_verify.sh"
