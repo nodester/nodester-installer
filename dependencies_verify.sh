@@ -61,8 +61,9 @@ done
 # checking npm dependencies
 declare -a npm_deps_not_ok
 declare -a npm_deps_to_install
-npm_deps_to_install=()
 npm_deps_not_ok=()
+npm_deps_to_install=()
+
 for npm_mod in ${npm_modules_dependencies[@]} 
 do
 	npm_version=`npm --version 2>&1`
@@ -95,9 +96,8 @@ do
 		echo ;
 		new_len=$(( ${#npm_deps_not_ok[@]} + 1 ))
 		npm_deps_not_ok[$new_len]=$npm_mod
-    new_install=$(( ${#npm_deps_to_install[@]} + 1 ))
-    npm_deps_to_install[$new_install]=$npm_mod_to_install
-
+    new_install_len=$(( ${#npm_deps_to_install[@]} + 1 ))
+    npm_deps_to_install[$new_install_len]=$npm_mod_to_install    
 	fi
 done
 # printing missing dependencies
@@ -126,13 +126,24 @@ then
   echo -n "Would you like to install these dependencies globally? [type ${BLDYEL}yes${NOCOLR} to proceed]: "
   read install_npm_modules
   if [ "$install_npm_modules" == 'yes' ] ;
-  then 
+  then
+    declare -a npm_deps_met
+    npm_deps_met=()
 	  for i in "${npm_deps_to_install[@]}"
 	  do
       echo -n "installing npm module ${BLDVIO}$i${NOCOLR}"
       echo ;
       sh -c "npm install $i -g"
       echo ;
+      new_installed_len=$(( ${#npm_deps_met[@]} + 1 ))
+      npm_deps_met[$new_installed_len]=$i
+      echo
+      if [ "${#sys_deps_not_ok[@]}" -eq "0" ] && [ "${#npm_deps_not_ok[@]}" -eq "${#npm_deps_met[@]}" ] ;
+      then
+        echo ;
+        echo "All Nodester dependencies are now met"
+        echo "Now, please run ${BLDYEL}sudo ./env_creation.sh${NOCOLR} to create your nodester environment"
+    fi
     done
     echo ;
   else
@@ -144,7 +155,6 @@ then
       echo -n "$i "
     done
     echo 
-
   fi
 fi
 
@@ -152,3 +162,12 @@ if [ "${#sys_deps_not_ok[@]}" -gt "0" ] || [ "${#npm_deps_not_ok[@]}" -gt "0" ] 
 then
 	exit 1
 fi
+
+if [ "${#sys_deps_not_ok[@]}" -eq "0" ] && [ "${#npm_deps_not_ok[@]}" -eq "0" ] ;
+then
+  echo ;
+  echo "All Nodester dependencies are met"
+  echo "Now, please run ${BLDYEL}sudo ./env_creation.sh${NOCOLR} to create your nodester environment"
+  exit 1
+fi
+
