@@ -10,7 +10,7 @@ echo "|_| |_|\___/ \__,_|\___||___/\__\___|_|"
 echo ""
 
 # CHOOSE THE HOME_DIR FOR THE NODESTER USER
-NODESTER_HOME_DIR="/root/nodester"
+NODESTER_HOME_DIR="/node/nodester"
 NODESTER_USER="nodester"
 NODESTER_USER_PASS="YourUb3rSecretPassword!"
 NODESTER_GROUP="nodester"
