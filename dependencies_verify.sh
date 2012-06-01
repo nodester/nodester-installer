@@ -14,7 +14,7 @@ declare -a sys_dependencies
 sys_dependencies=("node" "npm" "curl")
 # define your npm dependencies here
 declare -a npm_modules_dependencies 
-npm_modules_dependencies=("pool" "express" "request" "npm-wrapper" "daemon" "cradle" "connect" "coffee-script" "colors" "nodemailer" "bouncy" "nodeinfo")
+npm_modules_dependencies=("pool" "express" "request" "npm-wrapper" "daemon" "cradle" "connect" "coffee-script" "colors" "nodemailer" "bouncy" "nodeinfo" "redis")
 
 # color used for printing
 use_color=true
