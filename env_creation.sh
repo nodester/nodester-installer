@@ -82,6 +82,7 @@ case $whoami in
 $NODESTER_USER ALL = NOPASSWD: $NODESTER_HOME_DIR/nodester/proxy/start_proxy.sh *
 $NODESTER_USER ALL = NOPASSWD: $NODESTER_HOME_DIR/nodester/proxy/stop.sh
 $NODESTER_USER ALL = NOPASSWD: $NODESTER_HOME_DIR/nodester/scripts/launch_app.sh *
+$NODESTER_USER ALL = NOPASSWD: $NODESTER_HOME_DIR/nodester/scripts/gitreposetup.sh *
 		\" >> /etc/sudoers && break " ||\
 		( echo "error make FS skeleton!" ; exit 1 )
 	;;
