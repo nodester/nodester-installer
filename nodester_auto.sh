@@ -1,7 +1,12 @@
 #!/bin/bash
-
-#grab this file with:
-# curl -s http://asfasf/NodesterUp.sh > NodeseterUp.sh; sh NodesterUp.sh
+#
+# --------------------------------------------------------------
+# download and run this file with:
+# $> curl -s http://asfasf/nodester_auto.sh > nodester_auto.sh; 
+# $> chmod a+x nodester_auto.sh
+# $> ./nodester_auto.sh
+# --------------------------------------------------------------
+#
 
 whoami=`whoami`
 system=`uname -s`
