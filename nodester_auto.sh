@@ -275,6 +275,17 @@ case $whoami in
 
     echo ${BLDCYA};
     echo ".----------------------------------------------------------.";
+    echo "| NodesterHelper: Setup CHRoot                             |";
+    echo "'----------------------------------------------------------'";
+    echo ${NOCOLR}
+    sleep 1;
+    cd /opt
+    wget http://nodester.com/sandbox.tar.gz
+    tar -zxvf sandbox.tar.gz 
+    rm sandbox.tar.gz
+
+    echo ${BLDCYA};
+    echo ".----------------------------------------------------------.";
     echo "| NodesterHelper: Starting up Proxy and Main API           |";
     echo "'----------------------------------------------------------'";
     echo ${NOCOLR}
