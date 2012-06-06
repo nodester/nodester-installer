@@ -2,7 +2,7 @@
 #
 # --------------------------------------------------------------
 # download and run this file with:
-#  curl -s https://raw.github.com/nodester/nodester-installer/master/nodester_auto.sh > nodester_auto.sh; 
+#  curl -s https://github.com/nodester/nodester-installer/raw/master/nodester_auto.sh > nodester_auto.sh; 
 #  chmod a+x nodester_auto.sh
 #  ./nodester_auto.sh
 # --------------------------------------------------------------
