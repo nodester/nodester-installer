@@ -307,6 +307,7 @@ case $whoami in
     echo "  | 5. change the password for user 'nodester'           |";
     echo "  | 6. set password for database (and update config.js)  |";
     echo "  | 7. run as needed >> ${BLDGRN}start${NOCOLR}|${BLDRED}stop${NOCOLR} ${BLDVIO}proxy${NOCOLR}|${BLDVIO}app${NOCOLR}             |";
+    echo "  | 8. run: tail -n 50 ./nodester_auto.sh for examples   |";
     echo "  '------------------------------------------------------'";
     echo ${NOCOLR}
 
@@ -319,7 +320,38 @@ esac
 exit 0
 
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+# EXAMPLES (last 50 lines of this file) 
+# ------------------------------------------------------------------------
+
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 # curl -X POST -d "coupon=CouponCode&user=testuser&password=123&email=you@email.com&rsakey=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQ..." http://<yourdomain>/user
 #
@@ -342,6 +374,7 @@ exit 0
 # git add .
 # git commit -m "first commit"
 # git push origin master
+#
 
 
 
