@@ -125,19 +125,18 @@ case $whoami in
       echo "No need to update /etc/couchdb/local.ini, Looks like nodester change was already made."
       echo "";
     else
-        # code if not found
+      # code if not found
       /etc/init.d/couchdb stop;
-      couchdb -k;
+      # FORCE KILL COUCHDB (this gets around the kill -1 issue reported)
+      ps -U couchdb -o pid= | xargs kill -9
       sleep 2;
       echo "adding nodester admin account [nodester:password] to CouchDB";
       echo "nodester = password" >> /etc/couchdb/local.ini
       #nano /etc/couchdb/local.ini
       /etc/init.d/couchdb restart;
       sleep 2;
-      #couchdb
     fi
     /etc/init.d/couchdb status
-    #couchdb -b
     sleep 1;
 
     echo ${BLDCYA};
