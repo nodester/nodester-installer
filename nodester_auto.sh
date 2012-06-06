@@ -318,7 +318,7 @@ case $whoami in
     echo "  | 4. view logs in /node/logs                           |";
     echo "  | 5. change the password for user 'nodester'           |";
     echo "  | 6. set password for database (and update config.js)  |";
-    echo "  | 7. run as needed >> ${BLDGRN}start${NOCOLR}|${BLDRED}stop${NOCOLR} ${BLDVIO}proxy${NOCOLR}|${BLDVIO}app${NOCOLR}             |";
+    echo "  | 7. run as needed >> ${BLDGRN}start${NOCOLR}|${BLDRED}stop${NOCOLR} ${BLDVIO}proxy${NOCOLR}|${BLDVIO}app${BLDCYA}            |";
     echo "  | 8. run: tail -n 50 ./nodester_auto.sh for examples   |";
     echo "  '------------------------------------------------------'";
     echo ${NOCOLR}
