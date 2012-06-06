@@ -316,27 +316,28 @@ exit 0
 
 #------------------------------------------------------------------------
 #
-# curl -X POST -d "coupon=CouponCode&user=testuser&password=123&email=akumpf@gmail.com&rsakey=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpRb7lbvxpZ95SmqXLeS+EuXDepSe7Uv8Fu3PZNqW8gKsFZVCd1DenRtbBUY5AdgjZyOe5DUWGSWFvir14ZpQDfnR9TeOjvxMCeiufB52j1a3erMm/i+52cXKhBAK+3qTjYT1imWz+Gojh+unPakL/lBKY3w1GbduVy2gad/CUnLXqpf7Y0ZAf3wDSyzWzA76n8nhb62yRXzvjV5WnCLn+Ls7WZaVyKSyAP7oLA64FrAiUVNmp7G4zvPfk3HRCxk8VvwTQd+Op9/XkAKTc1igqbfF18YVpnjIWIT9S9iPmW2oKhM+y87aQbsVy8pU1uXUqOppANHXBiz/T9" http://n.chaoscollective.org/user
+# curl -X POST -d "coupon=CouponCode&user=testuser&password=123&email=you@email.com&rsakey=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQ..." http://<yourdomain>/user
 #
-# curl -u "testuser:123" http://api.n.chaoscollective.org/status
+# curl -u "testuser:123" http://api.<yourdomain>/status
 # -> {"status":"up","appshosted":0,"appsrunning":0}
 #
-# curl -u "testuser:123" http://api.n.chaoscollective.org/apps
+# curl -u "testuser:123" http://api.<yourdomain>/apps
 # -> []
 #
-# curl -X POST -u "testuser:123" -d "appname=eight&start=hello.js" http://api.n.chaoscollective.org/app
-# -> {"status":"success","port":10007,"gitrepo":"nodester@git.n.chaoscollective.org:/git/akumpf/8-e0637cb80f0e660fe133a308f86eb9ad.git","start":"hello.js","running":false,"pid":"unknown"}
+# curl -X POST -u "testuser:123" -d "appname=testapp&start=hello.js" http://api.<yourdomain>/app
+# -> {"status":"success","port":10007,"gitrepo":"nodester@git.<yourdomain>:/git/testuser/1-e0637cb80f0e660fe133a308f86eb9ad.git","start":"hello.js","running":false,"pid":"unknown"}
 #
 # The point of the RSA token is to allow for git clone/push without username and password.
 # if it doesn't know your RSA token, you'll need the nodester user/pass ( nodester / YourUb3rSecretPassword! )
 #
-# git clone nodester@git.n.chaoscollective.org:/git/akumpf/8-e0637cb80f0e660fe133a308f86eb9ad.git eight
-# cd eight
+# git clone nodester@git.<yourdomain>:/git/testuser/1-e0637cb80f0e660fe133a308f86eb9ad.git testapp
+# cd testapp
 # ls
 # echo "console.log('mooo');" > hello.js
 # git add .
 # git commit -m "first commit"
 # git push origin master
+
 
 
 
