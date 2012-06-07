@@ -172,11 +172,13 @@ case $whoami in
 
     echo ${BLDCYA};
     echo ".----------------------------------------------------------.";
-    echo "| Node: Installing node                                    |";
+    echo "| Node: Installing node-v0.4.12 and latest stable version  |";
     echo "'----------------------------------------------------------'";
     echo ${NOCOLR}
     sleep 1;
-    n 0.6.18
+    n 0.4.12
+    n stable
+    n 0.4.12
 
     echo ${BLDCYA};
     echo ".----------------------------------------------------------.";
